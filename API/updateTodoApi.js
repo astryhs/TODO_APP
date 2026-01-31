@@ -15,7 +15,7 @@ export async function updateTodo(id, newText) {
     console.log("Текст задачи обновлен");
     return true;
   } catch (error) {
-    console.log(`Ошибка обновления текста задачи: `, error.message);
+    console.error(`Ошибка обновления текста задачи: `, error.message);
     throw error;
   }
 }

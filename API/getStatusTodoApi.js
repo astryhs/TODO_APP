@@ -18,7 +18,7 @@ export async function toggleTodoStatus(id, completed) {
 
     return true;
   } catch (error) {
-    console.log(`Ошибка обновления статуса задачи: `, error.message);
+    console.error(`Ошибка обновления статуса задачи: `, error.message);
     throw error;
   }
 }

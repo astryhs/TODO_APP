@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -25,7 +24,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
   align-items: center;
@@ -35,7 +34,7 @@ body {
 /* Спиннер */
 #spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db; 
+  border-top: 4px solid #3498db;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -93,7 +92,8 @@ body {
 }
 
 /* Кнопки */
-.button-download {
+.button-download,
+#delete-completed-button {
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -101,15 +101,28 @@ body {
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
-.button-download:hover {
+#delete-completed-button {
+  background-color: #ed3846;
+  display: none;
+}
+#delete-completed-button:hover {
+  background-color: #de1829;
+  transform: translateY(-2px);
+}
+
+.button-download:hover,
+#delete-completed-button:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
 }
 
-.button-download:active {
+.button-download:active,
+#delete-completed-button:active {
   transform: translateY(0);
 }
 
@@ -161,4 +174,13 @@ body {
 
 .button-function:hover {
   transform: scale(1.1);
+}
+
+.todo.dragging {
+  opacity: 0.4;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.todo {
+  transition: all 0.3s;
 }
