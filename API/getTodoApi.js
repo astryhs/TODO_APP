@@ -1,0 +1,23 @@
+import { host } from "../script.js";
+
+export async function getTodos() {
+  try {
+    const response = await fetch(host, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Данные не получены. Статус: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Данные получены: ", data);
+    return data;
+  } catch (error) {
+    console.log(`Ошибка получения данных: `, error.message);
+    throw error;
+  }
+    finally {
+      hideLoader();
+    }
+}
