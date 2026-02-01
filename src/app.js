@@ -2,6 +2,7 @@ import {
   initDragAndDrop,
   initDeleteCompleted,
   initAddTodo,
+  updateTask,
 } from "./components/index.js";
 
 import {
@@ -14,7 +15,7 @@ import {
 import { showError, hideLoader, showLoader } from "./utils/helpers.js";
 
 export const container = document.getElementById("posts-container");
- 
+
 const downloadButton = document.querySelector(".button-download");
 export const deleteCompletedButton = document.getElementById(
   "delete-completed-button",
@@ -107,30 +108,7 @@ function renderData(todos) {
 
     updateButton.append(updateIcon);
 
-    updateButton.addEventListener("click", async () => {
-      const { value: newText } = await Swal.fire({
-        title: "Редактирование задачи",
-        input: "text",
-        inputLabel: "Введите теккст новой задачи",
-        inputValue: todo.text,
-        showCancelButton: true,
-        confirmButtonText: "Сохранить",
-        cancelButtonText: "Отмена",
-        inputValidator: (value) => {
-          if (!value) {
-            return "Поле не может быть пустым";
-          }
-        },
-      });
-      if (newText) {
-        try {
-          await updateTodo(todo.id, newText);
-          await loadData();
-        } catch (error) {
-          showError("Не удалось обновить задачу");
-        }
-      }
-    });
+    updateButton.addEventListener("click", () => updateTask(todo));
 
     todoElement.append(
       checkbox,
