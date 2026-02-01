@@ -1,0 +1,26 @@
+{
+  "task_1": {
+    "createdAt": 1769980433632,
+    "text": "Сходить в магазин",
+    "completed": false,
+    "order": 2
+  },
+  "task_2": {
+    "createdAt": 1769980441322,
+    "text": "Помыть посуду",
+    "completed": true,
+    "order": 3
+  },
+  "task_3": {
+    "createdAt": 1769980450040,
+    "text": "Вынести мусор",
+    "completed": false,
+    "order": 4
+  },
+  "task_4": {
+    "createdAt": 1769980454322,
+    "text": "Покормить кота",
+    "completed": true,
+    "order": 1
+  }
+}
