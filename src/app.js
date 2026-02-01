@@ -1,4 +1,8 @@
-import { initDragAndDrop } from "./components/index.js";
+import {
+  initDragAndDrop,
+  initDeleteCompleted,
+  addNewTodo,
+} from "./components/index.js";
 
 import {
   getTodos,
@@ -6,20 +10,19 @@ import {
   deleteTodo,
   updateTodo,
   addTodo,
-  deleteCompletedTodos,
 } from "./API/index.js";
 
 import { showError, hideLoader, showLoader } from "./utils/helpers.js";
 
-const container = document.getElementById("posts-container");
-const taskInput = document.getElementById("task-input");
+export const container = document.getElementById("posts-container");
+export const taskInput = document.getElementById("task-input");
 const addButton = document.getElementById("add-button");
 const downloadButton = document.querySelector(".button-download");
-const deleteCompletedButton = document.getElementById(
+export const deleteCompletedButton = document.getElementById(
   "delete-completed-button",
 );
 
-async function loadData() {
+export async function loadData() {
   try {
     showLoader();
     const todos = await getTodos();
@@ -146,64 +149,16 @@ function renderData(todos) {
   });
 }
 
-async function addNewTodo() {
-  const newTodoText = taskInput.value.trim();
-
-  if (!newTodoText) {
-    alert("Ведите текст задачи");
-    return;
-  }
-
-  const newTodo = {
-    text: newTodoText,
-    createdAt: Date.now(),
-    completed: false,
-  };
-
-  try {
-    await addTodo(newTodo);
-
-    console.log("Задача добавлена");
-    taskInput.value = "";
-    await loadData();
-  } catch (error) {
-    console.error(error.message);
-    showError("Не удалось добавить задачу");
-  }
-}
-
 addButton.addEventListener("click", () => {
-  addNewTodo();
+  addNewTodo(taskInput);
 });
 
 taskInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    addNewTodo();
+    addNewTodo(taskInput);
   }
 });
 
 downloadButton.addEventListener("click", loadData);
 
-deleteCompletedButton.addEventListener("click", async () => {
-  const { isConfirmed } = await Swal.fire({
-    title: "Вы уверены?",
-    text: "Все выполненные задачи будут удалены",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Да, удалить!",
-    cancelButtonText: "Отменить",
-  });
-
-  if (!isConfirmed) {
-    return;
-  }
-  try {
-    await deleteCompletedTodos(container);
-    await loadData();
-  } catch (error) {
-    console.error(error.message);
-    showError("Не удалось удалить список задач");
-  }
-});
+initDeleteCompleted();
