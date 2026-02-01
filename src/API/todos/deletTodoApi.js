@@ -8,7 +8,7 @@ export async function deleteTodo(id) {
     if (!response.ok) {
       throw new Error(`Не удалось удалить задачу. Статус: ${response.status}`);
     }
-
+    
     console.log("Задача удалена");
 
     return true;
