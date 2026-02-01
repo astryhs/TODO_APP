@@ -1,6 +1,6 @@
-import { host } from "../script.js";
+import { host } from "../host.js";
 
-export async function updatetaskOrderOnServer(taskId, order) {
+export async function updateTaskOrderOnServer(taskId, order) {
   try {
     const response = await fetch(`${host}/${taskId}`, {
       method: "PUT",
