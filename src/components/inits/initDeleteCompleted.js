@@ -1,7 +1,6 @@
 import { showError } from "../../utils/helpers.js";
 import { deleteCompletedTodos } from "../../API/index.js";
-import { deleteCompletedButton } from "../index.js";
-import { loadData, container } from "../../app.js";
+import { deleteCompletedButton, container, loadData } from "../index.js";
 
 export function initDeleteCompleted() {
   deleteCompletedButton.addEventListener("click", async () => {
